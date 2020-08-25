@@ -13,59 +13,62 @@
 | first_name      | string | null: false |
 | last_name_kana  | string | null: false |
 | first_name_kana | string | null: false |
-| birthday        | string | null: false |
+| birthday        | date   | null: false |
 
 ### Association
 
-- has_many :products, through: :users_products
-- has_many :users_products
-- has_one :address
+- has_many :address, through: :orders
+- has_many :orders
+- has_many :products
+
+## orders テーブル
+
+| Column       | Type   | Options     |
+| -------------| ------ | ----------- |
+| user_id      | references | null: false, foreign_key: true |
+| products_id  | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :users
+- belongs_to :address
 
 
 ## address テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| last_name       | string     | null: false                    |
-| first_name      | string     | null: false                    |
-| last_name_kana  | string     | null: false                    |
-| first_name_kana | string     | null: false                    |
-| postcode        | integer    | null: false                    |
-| prefecture      | string     | null: false                    |
-| city            | string     | null: false                    |
-| address         | string     | null: false                    |
-| building        | string     |                                |
-| phone_number    | string     |                                |
-| user_id         | references | null: false, foreign_key: true |
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
+| postcode        | string     | null: false |
+| prefecture      | integer    | null: false |
+| city            | string     | null: false |
+| address         | string     | null: false |
+| building        | string     |             |
+| phone_number    | string     |             |
+
 
 ### Association
 
-- belongs_to :user
+- has_many :users, through: :orders
+- has_many :orders
 
 ## products テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| name            | string     | null: false                    |
-| price           | string     | null: false                    |
-| details         | string     | null: false                    |
-| condition       | string     | null: false                    |
-| delivery_fee    | integer    | null: false                    |
-| ship_area       | string     | null: false                    |
-| ship_days       | string     | null: false                    |
-| cate            | string     | null: false                    |
-| building        | string     |                                |
-| phone_number    | string     |                                |
-| brand_id        | references | null: false, foreign_key: true |
-| category_id     | references | null: false, foreign_key: true |
+| Column          | Type     | Options     |
+| --------------- | -------- | ----------- |
+| name            | string   | null: false |
+| price           | integer  | null: false |
+| details         | text     | null: false |
+| condition_id    | integer  | null: false |
+| delivery_fee_id | integer  | null: false |
+| ship_area_id    | integer  | null: false |
+| ship_days_id    | integer  | null: false |
+| brand_id        | integer  | null: false |
+| category_id     | integer  | null: false |
 
 ### Association
 
-- has_many :users, through: :users_products
-- has_many :users_products
 - belongs_to :product_images
-- belongs_to :category
-- belongs_to :brand
+- belongs_to :users
 
 ## product_images
 
@@ -76,36 +79,4 @@
 
 ### Association
 
-- belongs_to :products
-
-## categories テーブル
-
- Column       | Type       | Options      |
-| ------------| ---------- | ------------|
-| name        | string     | null: false |
-
-### Association
-
-- has_many :product
-
-## brands テーブル
-
-| Column     | Type   | Options     |
-| -----------| ------ | ----------- |
-| name       | string | null: false |
-
-### Association
-
-- has_many :products
-
-## users_products テーブル
-
-| Column       | Type   | Options     |
-| -------------| ------ | ----------- |
-| user_id      | references | null: false, foreign_key: true |
-| products_id  | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :users
 - belongs_to :products
