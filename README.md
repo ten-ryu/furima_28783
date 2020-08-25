@@ -69,7 +69,7 @@
 
 ### Association
 
-- belongs_to :product_image
+- has_many :product_image
 - belongs_to :user
 - has_one :management
 
