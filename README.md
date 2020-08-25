@@ -25,26 +25,27 @@
 | Column       | Type   | Options                         |
 | -------------| ------ | ------------------------------- |
 | user_id      | integer | null: false, foreign_key: true |
-| products     | integer | null: false, foreign_key: true |
+| product_id   | integer | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :product
+- belongs_to :product
 - belongs_to :user
-- has_many :addresses
+- has_one :addresses
 
 
 ## address テーブル
 
-| Column          | Type       | Options     |
-| --------------- | ---------- | ----------- |
-| postcode        | string     | null: false |
-| prefecture      | integer    | null: false |
-| city            | string     | null: false |
-| address         | string     | null: false |
-| building        | string     |             |
-| phone_number    | string     | null: false |
-
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| postcode        | string     | null: false                    |
+| prefecture      | integer    | null: false                    |
+| city            | string     | null: false                    |
+| address         | string     | null: false                    |
+| building        | string     |                                |
+| phone_number    | string     | null: false                    |
+| management_id   | integer    | null: false, foreign_key: true |
+ 
 
 ### Association
 
