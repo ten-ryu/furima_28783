@@ -22,8 +22,8 @@
 
 ## managements テーブル
 
-| Column       | Type   | Options                         |
-| -------------| ------ | ------------------------------- |
+| Column       | Type    | Options                        |
+| -------------| ------- | ------------------------------ |
 | user_id      | integer | null: false, foreign_key: true |
 | product_id   | integer | null: false, foreign_key: true |
 
@@ -78,7 +78,7 @@
 | Column      | Type       | Options                        |
 | ------------| ---------- | ------------------------------ |
 | name        | string     | null: false                    |
-| product_id  | references | null: false, foreign_key: true |
+| product_id  | integer    | null: false, foreign_key: true |
 
 ### Association
 
