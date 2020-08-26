@@ -1,24 +1,85 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+| Column          | Type   | Options     |
+| --------------- | ------ | ----------- |
+| nickname        | string | null: false |
+| email           | string | null: false |
+| password        | string | null: false |
+| last_name       | string | null: false |
+| first_name      | string | null: false |
+| last_name_kana  | string | null: false |
+| first_name_kana | string | null: false |
+| birthday        | date   | null: false |
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many :managements
+- has_many :products
 
-* Database creation
+## managements テーブル
 
-* Database initialization
+| Column       | Type    | Options                        |
+| -------------| ------- | ------------------------------ |
+| user_id      | integer | null: false, foreign_key: true |
+| product_id   | integer | null: false, foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :product
+- belongs_to :user
+- has_one :addresses
 
-* Deployment instructions
 
-* ...
+## address テーブル
+
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| postcode        | string     | null: false                    |
+| prefecture      | integer    | null: false                    |
+| city            | string     | null: false                    |
+| address         | string     | null: false                    |
+| building        | string     |                                |
+| phone_number    | string     | null: false                    |
+| management_id   | integer    | null: false, foreign_key: true |
+ 
+
+### Association
+
+- belongs_to :management
+
+## products テーブル
+
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| name            | string     | null: false                    |
+| price           | integer    | null: false                    |
+| details         | text       | null: false                    |
+| condition_id    | integer    | null: false                    |
+| delivery_fee_id | integer    | null: false                    | 
+| ship_area_id    | integer    | null: false                    |
+| ship_days_id    | integer    | null: false                    |
+| brand_id        | integer    | null: false                    |
+| category_id     | integer    | null: false                    |
+| user_id         | integer    | null: false, foreign_key: true |
+
+
+### Association
+
+- has_many :product_images
+- belongs_to :user
+- has_one :management
+
+## product_images
+
+| Column      | Type       | Options                        |
+| ------------| ---------- | ------------------------------ |
+| name        | string     | null: false                    |
+| product_id  | integer    | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :product
