@@ -18,18 +18,18 @@
 ### Association
 
 - has_many :managements
-- has_many :products
+- has_many :items
 
 ## managements テーブル
 
 | Column       | Type    | Options                        |
 | -------------| ------- | ------------------------------ |
 | user_id      | integer | null: false, foreign_key: true |
-| product_id   | integer | null: false, foreign_key: true |
+| item_id      | integer | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :product
+- belongs_to :item
 - belongs_to :user
 - has_one :addresses
 
@@ -51,7 +51,7 @@
 
 - belongs_to :management
 
-## products テーブル
+## items テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
@@ -69,7 +69,7 @@
 
 ### Association
 
-- has_many :product_images
+- has_many :item_images
 - belongs_to :user
 - has_one :management
 
@@ -78,8 +78,8 @@
 | Column      | Type       | Options                        |
 | ------------| ---------- | ------------------------------ |
 | name        | string     | null: false                    |
-| product_id  | integer    | null: false, foreign_key: true |
+| item_id     | integer    | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :product
+- belongs_to :item
