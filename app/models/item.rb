@@ -10,5 +10,5 @@ class Item < ApplicationRecord
  
   validates :image, :name, :details, :category, :condition, :delivery_fee, :ship_area, :ship_days, :price, presence: true
   validates :category_id, :condition_id, :delivery_fee_id, :ship_area_id, :ship_days_id, numericality: { other_than: 1 }
-  validates :price, format:{with: /\A[0-9]+\z/, message: "is invalid. Input half-width characters."},inclusion:{in: 300..9999999,message: "is out of setting range"}
+  validates :price, format:{with: /\A[0-9]+\z/},inclusion:{in: 300..9999999,message: "は半角数字かつ300~9999999の間で入力してください"}
 end
