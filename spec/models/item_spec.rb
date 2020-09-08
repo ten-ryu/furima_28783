@@ -31,29 +31,29 @@ describe Item do
         expect(@item.errors.full_messages).to include("Details can't be blank")
       end
       it "category_idが空では登録できない" do
-        @item.category_id = "", {id:1,name: '---' }
+        @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it "condition_idが空では登録できない" do
-        @item.condition_id = "", {id:1,name: '---' }
+        @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank")
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
       it "delivery_fee_idが空では登録できない" do
-          @item.delivery_fee_id = "", {id:1,name: '---' }
+          @item.delivery_fee_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
+          expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
       end
       it "ship_area_idが空では登録できない" do
-        @item.ship_area_id = "", {id:1,name: '---' }
+        @item.ship_area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Ship area can't be blank")
+        expect(@item.errors.full_messages).to include("Ship area must be other than 1")
       end
       it "ship_days_idが空では登録できない" do
-        @item.ship_days_id = "", {id:1,name: '---' }
+        @item.ship_days_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Ship days can't be blank")
+        expect(@item.errors.full_messages).to include("Ship days must be other than 1")
       end
       it "priceが空では登録できない" do
         @item.price = ""
