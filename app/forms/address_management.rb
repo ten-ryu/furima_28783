@@ -3,7 +3,7 @@ class AddressManagement
   include ActiveModel::Model
   attr_accessor :postcode, :prefecture_id, :city, :address,:building, :phone_number,:user_id, :item_id, :token
   
-  validates :postcode, :prefecture_id, :city, :address,:phone_number,  presence: true
+  validates :token,:postcode, :prefecture_id, :city, :address,:phone_number,  presence: true
   validates :postcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
   validates :prefecture_id, numericality: { other_than: 1 } 
   validates :phone_number, format: {with: /\A\d{11}\z/}

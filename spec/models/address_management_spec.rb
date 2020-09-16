@@ -9,6 +9,12 @@ RSpec.describe AddressManagement, type: :model do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@address_management).to be_valid
     end
+
+    it 'tokenが空だと保存できないこと' do
+      @address_management.token = ''
+      @address_management.valid?
+      expect(@address_management.errors.full_messages).to include("Token can't be blank")
+    end
     it 'postcodeが空だと保存できないこと' do
       @address_management.postcode = nil
       @address_management.valid?

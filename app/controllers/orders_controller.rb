@@ -1,15 +1,14 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item, only: [:index, :create]
   before_action :move_to_index, only: [:index]
 
   def index
-    @item = Item.find(params[:item_id])
     @order = AddressManagement.new
   end
 
   def create
     @order = AddressManagement.new(order_params)
-    @item = Item.find(params[:item_id])
     if @order.valid?
       pay_item
       @order.save
@@ -36,6 +35,10 @@ class OrdersController < ApplicationController
       card: order_params[:token],    
       currency:'jpy'                 
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
   def move_to_index
