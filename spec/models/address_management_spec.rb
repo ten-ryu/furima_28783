@@ -30,7 +30,6 @@ RSpec.describe AddressManagement, type: :model do
       @address_management.valid?
       expect(@address_management.errors.full_messages).to include("Prefecture must be other than 1")
     end
-
     it 'cityが空だと保存できないこと' do
       @address_management.city = nil
       @address_management.valid?
@@ -40,6 +39,10 @@ RSpec.describe AddressManagement, type: :model do
       @address_management.address = nil
       @address_management.valid?
       expect(@address_management.errors.full_messages).to include("Address can't be blank")
+    end
+    it 'buildingは空でも保存できること' do
+      @address_management.building = nil
+      expect(@address_management).to be_valid
     end
     it 'phone_numberが空だと保存できないこと' do
       @address_management.phone_number = nil
