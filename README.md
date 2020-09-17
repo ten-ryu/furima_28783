@@ -31,10 +31,10 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :addresses
+- has_one :address
 
 
-## address テーブル
+## addresses テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
